@@ -6,11 +6,13 @@ if (navigator.userAgent.indexOf('PhantomJS') > -1) {
 }
 
 export const state = {
-  todos: JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '[]')
+  todos: JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '[]'),
+  loadingState: JSON.parse(window.localStorage.getItem('stateLoading') || false)
 }
 
 export const mutations = {
   addTodo (state, { text }) {
+    console.log(state)
     state.todos.push({
       text,
       done: false
@@ -37,5 +39,15 @@ export const mutations = {
 
   clearCompleted (state) {
     state.todos = state.todos.filter(todo => !todo.done)
+  },
+
+  toggleSateL (state) {
+    console.log(state)
+    state.loadingState = !state.loadingState
+  },
+
+  change (state) {
+    state.loadingState = false
   }
 }
+

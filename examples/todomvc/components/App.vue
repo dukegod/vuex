@@ -41,12 +41,15 @@
         Clear completed
       </button>
     </footer>
+    <!-- loading -->
+    <loading></loading> 
   </section>
 </template>
 
 <script>
 import { mapMutations } from 'vuex'
 import Todo from './Todo.vue'
+import Loading from './loading.vue'
 
 const filters = {
   all: todos => todos,
@@ -55,7 +58,7 @@ const filters = {
 }
 
 export default {
-  components: { Todo },
+  components: { Todo, Loading},
   data () {
     return {
       visibility: 'all',
@@ -81,6 +84,7 @@ export default {
       var text = e.target.value
       if (text.trim()) {
         this.$store.commit('addTodo', { text })
+        this.$store.commit('toggleSateL')
       }
       e.target.value = ''
     },
